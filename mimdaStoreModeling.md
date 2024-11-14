@@ -7,11 +7,11 @@
 - product_id **(PK)**
 - product
 - price
-- supplier
+- supplier_id **(FK)**
 
 ### products_variant
 
-- variant_id **(PK)**
+- product_variant_id **(PK)**
 - product_id **(FK)**
 - size
 - color
@@ -25,7 +25,6 @@
 - supplier
 - supplier_type_id **(FK)**
 - phone_number
-- address_id **(FK)**
 - email
 - contact
 
@@ -37,19 +36,41 @@
 ### suppliers_address
 
 - address_id **(PK)**
-- supplier_id **(FK)**
 - country_id **(FK)**
-- estate
-- cp
-- colony
+- state_is **(FK)**
+- zip_code_id **(FK)**
+- neighborhood_id **(FK)**
 - street
 - exterior_number
 - interior_number
+
+## supplier_addresses
+
+- supplier_address_id **(PK)**
+- supplier_id **(FK)**
+- address_id **(FK)**
 
 ### countries
 
 - county_id **(PK)**
 - country
+
+### states
+
+- state_id **(PK)**
+- state
+
+### zip_codes
+
+- zip_code_id **(PK)**
+- state_id **(FK)**
+- zip_code
+
+### neighborhoods
+
+- neighborhood_id **(PK)**
+- zip_code_id **(FK)**
+- neighborhood
 
 ### purchase_orders
 
@@ -101,6 +122,36 @@
 
 - An **address** _can be assigned_ a **country** (_1 to 1_).
 - A **country** _could be assigned_ to different **addressess** (_1 to many_).
+- Relation _1:N_
+
+### suppliers_address to states
+
+- An **address** _is associated to_ a **state** (_1 to 1_).
+- A **state** _could have_ different **addressess** (_1 to many_).
+- Relation _1:N_
+
+### suppliers_address to zip_codes
+
+- An **address** _is associated to_ a **zip_code** (_1 to 1_).
+- A **zip_code** _could have_ different **addressess** (_1 to many_).
+- Relation _1:N_
+
+### suppliers_address to neighborhoods
+
+- An **address** _is associated to_ a **neighborhood** (_1 to 1_).
+- A **neighborhood** _could have_ different **addressess** (_1 to many_).
+- Relation _1:N_
+
+### states to zip_codes
+
+- A **state** _could have_ many **zip_codes** (_1 to many_).
+- A **zip_code** _is associated to_ a **state** (_1 to 1_).
+- Relation _1:N_
+
+### zip_codes to neighborhoods
+
+- A **zip_code** _could have_ many **neighborhoods** (_1 to many_).
+- A **neighborhood** _is associated to_ a **zip_code** (_1 to 1_).
 - Relation _1:N_
 
 ### purchase_orders to suppliers
