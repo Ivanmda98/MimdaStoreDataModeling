@@ -33,16 +33,16 @@
 - supplier_type_id **(PK)**
 - supplier_type
 
-### suppliers_address
+### addresses
 
 - address_id **(PK)**
 - country_id **(FK)**
-- state_is **(FK)**
+- state_id **(FK)**
 - zip_code_id **(FK)**
 - neighborhood_id **(FK)**
 - street
-- exterior_number
-- interior_number
+- street_number
+- unit_number
 
 ### supplier_addresses
 
@@ -87,7 +87,7 @@
 
 - purchase_order_item_id **(PK)**
 - purchase_order_id **(FK)**
-- variant_id **(FK)**
+- product_variant_id **(FK)**
 - quantity
 - unit_price
 - subtotal
@@ -155,12 +155,16 @@
 - Relation _1:N_
 
 ### purchase_orders to suppliers
-- A **purchase order** _could be_ suplied by a **supplier** (_1 to 1_).
+- A **purchase order** _could be_ supplied by a **supplier** (_1 to 1_).
 - A **suplier** _could suplied_ different **orders** (_1 to many_).
 - Relation _1:N_
 
 ### purchase_order_items to purchase_orders
 - A **purchase order** _could have_ many **items** (_1 to many_).
-- An **item** is related to a  **purchase_order_item** (_1 to 1_).
-- Relation _1:1_
+- An **item** _is related_ to a  **purchase_order_item** (_1 to 1_).
+- Relation _1:N_
 
+### purchase_order_items to products_variant
+- A **purchase order item** _is associated_ to only one **product variant** (_1 to 1_).
+- An **product variant** _could be associated_ to many **purchase_order_item** (_1 to many_).
+- Relation _1:N_
