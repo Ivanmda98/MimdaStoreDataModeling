@@ -44,7 +44,7 @@
 - exterior_number
 - interior_number
 
-## supplier_addresses
+### supplier_addresses
 
 - supplier_address_id **(PK)**
 - supplier_id **(FK)**
