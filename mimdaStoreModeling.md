@@ -2,14 +2,14 @@
 
 ## List of entities
 
-### products
+### products **ED**
 
 - product_id **(PK)**
 - product
 - price
 - supplier_id **(FK)**
 
-### products_variant
+### products_variant **ED**
 
 - product_variant_id **(PK)**
 - product_id **(FK)**
@@ -19,7 +19,7 @@
 - image
 - stock
 
-### suppliers
+### suppliers **ED**
 
 - supplier_id **(PK)**
 - supplier
@@ -28,12 +28,18 @@
 - email
 - contact
 
-### suppliers_type
+### suppliers_type **EC**
 
 - supplier_type_id **(PK)**
 - supplier_type
 
-### addresses
+### products_suppliers **EP**
+
+- product_supplier_id **(PK)**
+- product_id **(FK)**
+- supplier_id **(FK)**
+
+### addresses **ED**
 
 - address_id **(PK)**
 - country_id **(FK)**
@@ -44,35 +50,35 @@
 - street_number
 - unit_number
 
-### supplier_addresses
+### supplier_addresses **EP**
 
 - supplier_address_id **(PK)**
 - supplier_id **(FK)**
 - address_id **(FK)**
 
-### countries
+### countries **EC**
 
 - county_id **(PK)**
 - country
 
-### states
+### states **EC**
 
 - state_id **(PK)**
 - state
 
-### zip_codes
+### zip_codes **EC**
 
 - zip_code_id **(PK)**
 - state_id **(FK)**
 - zip_code
 
-### neighborhoods
+### neighborhoods **EC**
 
 - neighborhood_id **(PK)**
 - zip_code_id **(FK)**
 - neighborhood
 
-### purchase_orders
+### purchase_orders **ED**
 
 - purchase_order_id **(PK)**
 - supplier_id **(FK)**
@@ -83,7 +89,7 @@
 - total_amount
 - note
 
-### purchase_order_itmes
+### purchase_order_itmes **ED**
 
 - purchase_order_item_id **(PK)**
 - purchase_order_id **(FK)**
@@ -168,3 +174,22 @@
 - A **purchase order item** _is associated_ to only one **product variant** (_1 to 1_).
 - An **product variant** _could be associated_ to many **purchase_order_item** (_1 to many_).
 - Relation _1:N_
+
+
+## Diagrams
+
+### Modelo Entidad - Relacion
+
+![Modelo Endtidad - Relacion](./mimdaStoreER.drawio.png)
+
+### Modelo Relacional
+
+![Modelo Relacional](./mimdaStoreRelationalModel.drawio.png)
+
+## Glossary
+
+- **PK**: _Primary Key_
+- **FK**: _Foreign Key_
+- **ED**: Entidad de Datos
+- **EP**: Entidad Pivote
+- **EC**: Entidad Catalogo
